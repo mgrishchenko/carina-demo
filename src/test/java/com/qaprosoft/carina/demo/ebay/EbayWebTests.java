@@ -14,12 +14,8 @@ public class EbayWebTests implements IAbstractTest {
         homePageEbay.open();
         Assert.assertTrue(homePageEbay.isPageOpened(), "Home page is not opened");
         LoginPageEbay loginPageEbay = homePageEbay.getLoginLink().clickOnLoginLink();
-        loginPageEbay.typeEmail("grishchenko.m17@gmail.com");
-        loginPageEbay.clickToContinueBtn();
-        loginPageEbay.typePass("Grisha1234-");
-        loginPageEbay.clickSignBtn();
+        loginPageEbay.authorization();
         Assert.assertEquals(homePageEbay.getHelloText(), "Hi Maria!" , "User not authorised");
-        pause(3);
 
     }
 
@@ -33,7 +29,6 @@ public class EbayWebTests implements IAbstractTest {
         advSearchPage.typeKeyword("kitchenaid");
         advSearchPage.typePrice("1000");
         advSearchPage.clickSearchBtn();
-        pause(3);
         ResultsPage resultsPage = new ResultsPage(getDriver());
         Assert.assertEquals(resultsPage.getAllList(), "All Listings", "Results page is not opened!");
 
@@ -44,10 +39,7 @@ public class EbayWebTests implements IAbstractTest {
         homePageEbay.open();
         Assert.assertTrue(homePageEbay.isPageOpened(), "Home page is not opened");
         LoginPageEbay loginPageEbay = homePageEbay.getLoginLink().clickOnLoginLink();
-        loginPageEbay.typeEmail("grishchenko.m17@gmail.com");
-        loginPageEbay.clickToContinueBtn();
-        loginPageEbay.typePass("Grisha1234-");
-        loginPageEbay.clickSignBtn();
+        loginPageEbay.authorization();
         homePageEbay.getMyEbayBtn().hover();
         homePageEbay.clickOnMessBtn();
         MessagesPage messagesPage = new MessagesPage(getDriver());
@@ -71,6 +63,10 @@ public class EbayWebTests implements IAbstractTest {
         HomePageEbay homePageEbay = new HomePageEbay(getDriver());
         homePageEbay.open();
         Assert.assertTrue(homePageEbay.isPageOpened(), "Home page is not opened");
+        LoginPageEbay loginPageEbay = homePageEbay.getLoginLink().clickOnLoginLink();
+        loginPageEbay.authorization();
+        Assert.assertEquals(homePageEbay.getHelloText(), "Hi Maria!" , "User not authorised");
+        pause(3);
         homePageEbay.clickOnDealsLink();
         DailyDealsPage dailyDealsPage = new DailyDealsPage(getDriver());
         Assert.assertEquals(dailyDealsPage.getDealNav(), "Daily Deals", "Page is not opened");
@@ -97,7 +93,7 @@ public class EbayWebTests implements IAbstractTest {
         itemPage.getAddToBasketBtn();
         BasketPage basketPage = new BasketPage(getDriver());
         basketPage.clickRemoveBtn();
-        pause(5);
+
 
     }
 
@@ -115,7 +111,7 @@ public class EbayWebTests implements IAbstractTest {
         itemPage.getAddToBasketBtn();
         BasketPage basketPage = new BasketPage(getDriver());
         basketPage.clickSaveForLaterBtn();
-        pause(5);
+
     }
 
     @Test()
@@ -124,12 +120,7 @@ public class EbayWebTests implements IAbstractTest {
         homePageEbay.open();
         Assert.assertTrue(homePageEbay.isPageOpened(), "Home page is not opened");
         LoginPageEbay loginPageEbay = homePageEbay.getLoginLink().clickOnLoginLink();
-        loginPageEbay.typeEmail("grishchenko.m17@gmail.com");
-        loginPageEbay.clickToContinueBtn();
-        pause(10);
-        loginPageEbay.typePass("Grisha1234-");
-        loginPageEbay.clickSignBtn();
-        pause(3);
+        loginPageEbay.authorization();
         homePageEbay.clickOnDealsLink();
         DailyDealsPage dailyDealsPage = new DailyDealsPage(getDriver());
         Assert.assertEquals(dailyDealsPage.getDealNav(), "Daily Deals", "Page is not opened");
@@ -137,7 +128,7 @@ public class EbayWebTests implements IAbstractTest {
         dailyDealsPage.getListOfItems().get(randomNum).getLinkToItem().click();
         ItemPage itemPage = new ItemPage(getDriver());
         itemPage.getAddToWatchList();
-        pause(5);
+
 
 
     }
@@ -148,10 +139,7 @@ public class EbayWebTests implements IAbstractTest {
         homePageEbay.open();
         Assert.assertTrue(homePageEbay.isPageOpened(), "Home page is not opened");
         LoginPageEbay loginPageEbay = homePageEbay.getLoginLink().clickOnLoginLink();
-        loginPageEbay.typeEmail("grishchenko.m17@gmail.com");
-        loginPageEbay.clickToContinueBtn();
-        loginPageEbay.typePass("Grisha1234-");
-        loginPageEbay.clickSignBtn();
+        loginPageEbay.authorization();
 
         Assert.assertEquals(homePageEbay.getHiText(), "Hi Maria!", "Error");
         homePageEbay.getLoginBtn().hover();

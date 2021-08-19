@@ -31,7 +31,7 @@ public class BasketPage extends AbstractPage {
     }
 
     public String getBasketText() {
-        return basketText.getText();
+        return basketText.getElement().getText();
 
     }
     public void clickCallToActionBtn() {

@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.gui.pages.ebay;
 
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import io.cucumber.java.an.E;
@@ -31,18 +32,24 @@ public class LoginPageEbay extends AbstractPage {
         setPageURL("https://www.ebay.com/");
     }
 
-    public void typeEmail (String emailArg) {
-        EmailField.click();
-        EmailField.type(emailArg);
+    public ExtendedWebElement EmailField() {
+        return EmailField;
     }
-    public void clickToContinueBtn() {
-        ContinueBtn.click();
+    public ExtendedWebElement ContinueBtn() {
+        return ContinueBtn;
     }
-    public void typePass (String passArg) {
-        PassField.click();
-        PassField.type(passArg);
+    public ExtendedWebElement PassField() {
+        return PassField;
     }
-    public void clickSignBtn() {
-        SignBtn.click();
+    public ExtendedWebElement SignBtn() {
+        return SignBtn;
+    }
+
+    public void authorization() {
+        EmailField.type(R.TESTDATA.get("email"));
+        ContinueBtn().click();
+        PassField().type(R.TESTDATA.get("password"));
+        SignBtn().click();
+
     }
 }
