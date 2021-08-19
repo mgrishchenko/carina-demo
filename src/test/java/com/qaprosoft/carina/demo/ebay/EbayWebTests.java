@@ -1,20 +1,11 @@
 package com.qaprosoft.carina.demo.ebay;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.demo.gui.components.ebay.SearchItem;
 import com.qaprosoft.carina.demo.gui.pages.ebay.*;
-import io.cucumber.java.eo.Se;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.collections.CollectionUtils;
-
-import java.lang.invoke.MethodHandles;
-import java.sql.ResultSet;
-import java.util.List;
 
 public class EbayWebTests implements IAbstractTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
 
 
     @Test()
@@ -30,16 +21,6 @@ public class EbayWebTests implements IAbstractTest {
         Assert.assertEquals(homePageEbay.getHelloText(), "Hi Maria!" , "User not authorised");
         pause(3);
 
-    }
-    @Test
-    public void testSearch() {
-
-        HomePageEbay homePageEbay = new HomePageEbay(getDriver());
-        homePageEbay.open();
-        Assert.assertTrue(homePageEbay.isPageOpened(), "Home page is not opened");
-        homePageEbay.typeValue("book");
-        homePageEbay.clickOnSearchBtn();
-        ResultsPage resultsPage = new ResultsPage(getDriver());
     }
 
     @Test()
@@ -96,7 +77,7 @@ public class EbayWebTests implements IAbstractTest {
         int randomNum = (int) (Math.random() * dailyDealsPage.getListOfItems().size());
         dailyDealsPage.getListOfItems().get(randomNum).getLinkToItem().click();
         ItemPage itemPage = new ItemPage(getDriver());
-        itemPage.getAddToBasketBtn();
+        itemPage.getCartBtnClone().click();
         BasketPage basketPage = new BasketPage(getDriver());
         Assert.assertEquals(basketPage.getBasketText(),"Shopping cart (1 item)", "Error");
 
