@@ -2,24 +2,29 @@ package com.qaprosoft.carina.demo.ebay;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.gui.pages.ebay.*;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class EbayWebTests implements IAbstractTest {
 
 
 
-    @Test()
+    @BeforeClass
     public void testLogin() {
         HomePageEbay homePageEbay = new HomePageEbay(getDriver());
         homePageEbay.open();
         Assert.assertTrue(homePageEbay.isPageOpened(), "Home page is not opened");
         LoginPageEbay loginPageEbay = homePageEbay.getLoginLink().clickOnLoginLink();
         loginPageEbay.authorization();
-        Assert.assertEquals(homePageEbay.getHelloText(), "Hi Maria!" , "User not authorised");
+        Assert.assertEquals(homePageEbay.getHiText(), "Hi Maria!" , "User not authorised");
+
+
 
     }
 
-    @Test()
+        @Test()
     public void testAdvancedSearch(){
         HomePageEbay homePageEbay = new HomePageEbay(getDriver());
         homePageEbay.open();
@@ -38,22 +43,10 @@ public class EbayWebTests implements IAbstractTest {
         HomePageEbay homePageEbay = new HomePageEbay(getDriver());
         homePageEbay.open();
         Assert.assertTrue(homePageEbay.isPageOpened(), "Home page is not opened");
-        LoginPageEbay loginPageEbay = homePageEbay.getLoginLink().clickOnLoginLink();
-        loginPageEbay.authorization();
         homePageEbay.getMyEbayBtn().hover();
         homePageEbay.clickOnMessBtn();
         MessagesPage messagesPage = new MessagesPage(getDriver());
         Assert.assertEquals(messagesPage.getHeaderText(), "My eBay: Messages", "Messages is not opened!");
-    }
-
-    @Test()
-    public void testChangeLang() {
-        HomePageEbay homePageEbay = new HomePageEbay(getDriver());
-        homePageEbay.open();
-        Assert.assertTrue(homePageEbay.isPageOpened(), "Home page is not opened");
-        homePageEbay.getLangBtn().hover();
-        homePageEbay.getLangFrBtn().click();
-        Assert.assertEquals(homePageEbay.getHiText(), "Bienvenue ! Connectez-vous ou inscrivez-vous", "Language is not changed!");
 
 
     }
@@ -63,10 +56,6 @@ public class EbayWebTests implements IAbstractTest {
         HomePageEbay homePageEbay = new HomePageEbay(getDriver());
         homePageEbay.open();
         Assert.assertTrue(homePageEbay.isPageOpened(), "Home page is not opened");
-        LoginPageEbay loginPageEbay = homePageEbay.getLoginLink().clickOnLoginLink();
-        loginPageEbay.authorization();
-        Assert.assertEquals(homePageEbay.getHelloText(), "Hi Maria!" , "User not authorised");
-        pause(3);
         homePageEbay.clickOnDealsLink();
         DailyDealsPage dailyDealsPage = new DailyDealsPage(getDriver());
         Assert.assertEquals(dailyDealsPage.getDealNav(), "Daily Deals", "Page is not opened");
@@ -93,6 +82,8 @@ public class EbayWebTests implements IAbstractTest {
         itemPage.getAddToBasketBtn();
         BasketPage basketPage = new BasketPage(getDriver());
         basketPage.clickRemoveBtn();
+        BasketPage basketPage1 = new BasketPage(getDriver());
+        Assert.assertEquals(basketPage1.getCartText(), "You don't have any items in your cart. Let's get shopping!", "Item is not removed");
 
 
     }
@@ -111,6 +102,10 @@ public class EbayWebTests implements IAbstractTest {
         itemPage.getAddToBasketBtn();
         BasketPage basketPage = new BasketPage(getDriver());
         basketPage.clickSaveForLaterBtn();
+        pause(3);
+        BasketPage basketPage2 = new BasketPage(getDriver());
+        Assert.assertEquals(basketPage2.getCartText(), "You don't have any items in your cart. Let's get shopping!", "Item is not removed");
+
 
     }
 
@@ -119,8 +114,6 @@ public class EbayWebTests implements IAbstractTest {
         HomePageEbay homePageEbay = new HomePageEbay(getDriver());
         homePageEbay.open();
         Assert.assertTrue(homePageEbay.isPageOpened(), "Home page is not opened");
-        LoginPageEbay loginPageEbay = homePageEbay.getLoginLink().clickOnLoginLink();
-        loginPageEbay.authorization();
         homePageEbay.clickOnDealsLink();
         DailyDealsPage dailyDealsPage = new DailyDealsPage(getDriver());
         Assert.assertEquals(dailyDealsPage.getDealNav(), "Daily Deals", "Page is not opened");
@@ -128,23 +121,6 @@ public class EbayWebTests implements IAbstractTest {
         dailyDealsPage.getListOfItems().get(randomNum).getLinkToItem().click();
         ItemPage itemPage = new ItemPage(getDriver());
         itemPage.getAddToWatchList();
-
-
-
-    }
-
-    @Test
-    public void testLogOut() {
-        HomePageEbay homePageEbay = new HomePageEbay(getDriver());
-        homePageEbay.open();
-        Assert.assertTrue(homePageEbay.isPageOpened(), "Home page is not opened");
-        LoginPageEbay loginPageEbay = homePageEbay.getLoginLink().clickOnLoginLink();
-        loginPageEbay.authorization();
-
-        Assert.assertEquals(homePageEbay.getHiText(), "Hi Maria!", "Error");
-        homePageEbay.getLoginBtn().hover();
-        homePageEbay.getLogOutBtn().click();
-        Assert.assertEquals(homePageEbay.getHelloText(), "Hi Maria (Sign in)" , "User not logged in");
 
 
     }

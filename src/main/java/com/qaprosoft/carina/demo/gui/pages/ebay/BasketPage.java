@@ -22,6 +22,9 @@ public class BasketPage extends AbstractPage {
     @FindBy(xpath = "//button[@class='faux-link']//span[contains(text(), 'Save for later')]")
     private ExtendedWebElement saveForLaterBtn;
 
+    @FindBy(xpath = "//div[@class= 'font-title-3']")
+    private ExtendedWebElement cartText;
+
 
 
 
@@ -42,6 +45,10 @@ public class BasketPage extends AbstractPage {
     }
     public void clickSaveForLaterBtn() {
         saveForLaterBtn.click();
+    }
+    public String getCartText() {
+        return cartText.getElement().getText();
+
     }
 }
 

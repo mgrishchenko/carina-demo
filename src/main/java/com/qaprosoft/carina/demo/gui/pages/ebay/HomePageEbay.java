@@ -8,43 +8,32 @@ import com.qaprosoft.carina.demo.gui.components.WeValuePrivacyAd;
 import com.qaprosoft.carina.demo.gui.components.ebay.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.lang.invoke.MethodHandles;
 
 public class HomePageEbay extends AbstractPage {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(xpath = "//ul[@id= 'gh-t']")
     private LoginButton loginLink;
 
-    @FindBy(xpath = "//button[@id= 'gh-ug']")
+    @FindBy(xpath = "//span[@class='gh-ug-guest']")
     private ExtendedWebElement loginBtn;
 
-    @FindBy(xpath = "//span[@class= 'gh-ug-guest']")
+    @FindBy(xpath = "//button[@class= 'gh-ua gh-control']")
     private ExtendedWebElement hiText;
+
+    @FindBy(xpath = "//span[@id='gh-ug']")
+    private ExtendedWebElement helloText;
 
     @FindBy(xpath = "//a[@class= 'gh-p']")
     private DealsItem openDeals;
 
-    @FindBy(xpath = "//span[contains(text(), 'Sign out')]")
+    @FindBy(xpath = "//a[contains(text(), 'Sign out')]")
     private ExtendedWebElement logOutBtn;
-
-    @FindBy(xpath = "//input[@id= 'gh-ac']")
-    private ExtendedWebElement searchField;
-
-    @FindBy(xpath = "//input[@id= 'gh-btn']")
-    private ExtendedWebElement searchBtn;
 
     @FindBy(xpath = "//a[@class= 'gh-p']")
     private ExtendedWebElement dealsLink;
 
     @FindBy(xpath = "//a[@id= 'gh-as-a']")
     private ExtendedWebElement advBtn;
-
-    @FindBy(xpath = "//li[@id='gh-p-2']")
-    private ExtendedWebElement sellBtn;
 
     @FindBy(xpath = "//a[@href= 'https://www.ebay.com/mys/home?source=GBH']")
     private ExtendedWebElement myEbayBtn;
@@ -58,9 +47,6 @@ public class HomePageEbay extends AbstractPage {
     @FindBy(xpath = "//a[@href= 'https://www.ebay.fr']")
     private ExtendedWebElement langFrBtn;
 
-    @FindBy(xpath = "//button[@class= 'gh-ua gh-control']")
-    private ExtendedWebElement helloText;
-
 
     public HomePageEbay(WebDriver driver) {
         super(driver);
@@ -70,30 +56,18 @@ public class HomePageEbay extends AbstractPage {
         return loginLink;
 
     }
-    public ExtendedWebElement getLoginBtn() {
-        return loginBtn;
+    public void loginBtn() {
+        this.loginBtn.click();
     }
-    public String getHiText() {
-        return hiText.getText();
+    public String getText() {
+        return helloText.getText();
     }
     public DealsItem getOpenDeals() {
         return openDeals;
     }
-    public ExtendedWebElement getLogOutBtn() {
-        return logOutBtn;
-    }
-    public ExtendedWebElement getSearchField() {
-        return searchField;
-    }
-    public ExtendedWebElement getSearchBtn() {
-        return searchBtn;
-    }
-    public void typeValue (String searchArg) {
-        searchField.click();
-        searchField.type(searchArg);
-    }
-    public void clickOnSearchBtn() {
-        searchBtn.click();
+    public void logOutBtn() {
+        this.logOutBtn.click();
+
     }
 
     public void clickOnDealsLink() {
@@ -102,9 +76,6 @@ public class HomePageEbay extends AbstractPage {
 
     public void clickOnAdvBun() {
         advBtn.click();
-    }
-    public void clickOnSellBtn() {
-        sellBtn.click();
     }
     public ExtendedWebElement getMyEbayBtn() {
         return myEbayBtn;
@@ -120,9 +91,10 @@ public class HomePageEbay extends AbstractPage {
         return langFrBtn;
     }
 
-    public String getHelloText() {
-        return helloText.getText();
+    public String getHiText() {
+        return hiText.getText();
     }
+
 
 
 }
