@@ -3,11 +3,12 @@ package com.qaprosoft.carina.demo.ebay;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.gui.pages.ebay.HomePageEbay;
 import org.testng.Assert;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 public class ChangeLangTest implements IAbstractTest {
 
-    @Test()
+    @BeforeSuite()
     public void testChangeLang() {
         HomePageEbay homePageEbay = new HomePageEbay(getDriver());
         homePageEbay.open();

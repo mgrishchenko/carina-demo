@@ -1,0 +1,24 @@
+{
+  "coord": {
+    "lon": 50,
+    "lat": 53
+  },
+  "list": [
+    {
+      "main": {
+        "aqi": 1
+      },
+      "components": {
+        "co": "regex:[\\d]",
+        "no": "regex:[\\d]",
+        "no2": "regex:[\\d]",
+        "o3": "regex:[\\d]",
+        "so2": "regex:[\\d]",
+        "pm2_5": "regex:[\\d]",
+        "pm10": "regex:[\\d]",
+        "nh3": "regex:[\\d]"
+      },
+      "dt": "regex:[\\d]"
+    }
+  ]
+}

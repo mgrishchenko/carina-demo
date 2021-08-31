@@ -2,13 +2,9 @@ package com.qaprosoft.carina.demo.ebay;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.gui.pages.ebay.*;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class EbayWebTests implements IAbstractTest {
-
 
 
     @BeforeClass
@@ -18,11 +14,9 @@ public class EbayWebTests implements IAbstractTest {
         Assert.assertTrue(homePageEbay.isPageOpened(), "Home page is not opened");
         LoginPageEbay loginPageEbay = homePageEbay.getLoginLink().clickOnLoginLink();
         loginPageEbay.authorization();
-        Assert.assertEquals(homePageEbay.getHiText(), "Hi Maria!" , "User not authorised");
+        Assert.assertEquals(homePageEbay.getHiText(), "Hi Maria!", "User not authorised");
 
-
-
-    }
+        }
 
         @Test()
     public void testAdvancedSearch(){

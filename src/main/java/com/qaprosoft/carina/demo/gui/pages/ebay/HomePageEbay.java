@@ -4,7 +4,6 @@ import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.gui.components.WeValuePrivacyAd;
 import com.qaprosoft.carina.demo.gui.components.ebay.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
